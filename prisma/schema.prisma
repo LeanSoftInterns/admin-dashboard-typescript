@@ -1,0 +1,22 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = "postgresql://mounirikine:CRDNFdJc6I5j@ep-bold-art-a2uvatac.eu-central-1.aws.neon.tech/adminjs?sslmode=require"
+}
+
+model User {
+  id   Int  @id @default(autoincrement())
+  name String  @default("ali") 
+  age  Int
+ 
+  role   Role @relation(fields: [roleId], references: [id])
+  roleId Int
+}
+model Role {
+  id  Int  @id @default(autoincrement())
+  Role String @default("") 
+  users User[] 
+}
